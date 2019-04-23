@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7A8123A6-59FC-4E5A-BF5D-DDE9DAF69DFF}</ProjectGuid>
+    <ProjectGuid>{E853348C-F49D-440A-BF28-5C5AF113C3E1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RouletteGame.Tests.Unit</RootNamespace>
-    <AssemblyName>RouletteGame.Tests.Unit</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>RouletteGame.Tests.Integration</RootNamespace>
+    <AssemblyName>RouletteGame.Tests.Integration</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,9 +35,8 @@
       <HintPath>..\packages\NSubstitute.1.10.0.0\lib\net45\NSubstitute.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -45,41 +45,30 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bets\BetUnitTests.cs" />
-    <Compile Include="Bets\ColorBetUnitTest.cs" />
-    <Compile Include="Bets\EvenOddBetUnitTest.cs" />
-    <Compile Include="Bets\FieldBetUnitTest.cs" />
-    <Compile Include="Fields\StandardFieldFactoryUnitTest.cs" />
-    <Compile Include="Fields\FieldUnitTests.cs" />
+    <Compile Include="IT1_RouletteStandardFieldFactoryField.cs" />
+    <Compile Include="IT2_3_4_BetsField.cs" />
+    <Compile Include="IT5_RouletteRandomizer.cs" />
+    <Compile Include="IT6_RouletteGame.cs" />
+    <Compile Include="IT7_RouletteGameRandomizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Fields\Randomizing\RouletteRandomizerUnitTest.cs" />
-    <Compile Include="Game\RouletteGameUnitTests.cs" />
-    <Compile Include="Roulette\RouletteUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RouletteGame.Legacy\RouletteGame.Legacy.csproj">
-      <Project>{8DB02F2D-DF86-4A3B-B94D-0374C1ECB9ED}</Project>
-      <Name>RouletteGame.Legacy</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\RouletteGame\RouletteGame.csproj">
-      <Project>{6603448a-0a93-4bb9-99dc-000fa59466f5}</Project>
+      <Project>{6603448A-0A93-4BB9-99DC-000FA59466F5}</Project>
       <Name>RouletteGame</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Settings.aiis" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties Name="RouletteGame.Tests.Unit" />
-    </VisualStudio>
-  </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
