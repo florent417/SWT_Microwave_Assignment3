@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AnalyseParams>
+  <TargetExecutable>C:\Program Files (x86)\NUnit.org\nunit-console\nunit3-console.exe</TargetExecutable>
+  <TargetArguments>bin\Debug\RouletteGame.Tests.Unit.dll --result:TestResult.xml;format=nunit2</TargetArguments>
+  <TargetWorkingDir>RouletteGame.Tests.Unit</TargetWorkingDir>
+  <TempDir><!-- Directory for the auxiliary files. Set to system temp by default. --></TempDir>
+  <Output>coverage_report.html</Output>
+  <ReportType>HTML<!-- [HTML|JSON|XML|NDependXML]. A type of the report. XML by default. --></ReportType>
+  <InheritConsole><!-- [True|False] Lets the application being analysed to inherit dotCover console. True by default. --> </InheritConsole>
+  
+  <!-- Coverage filters. It's possible to use asterisks as wildcard symbols. Changed by FRABJ -->
+  <Filters>
+	<!--
+	<IncludeFilters>
+      <FilterEntry>
+        <ModuleMask> Module mask. </ModuleMask>
+        <ClassMask> Class mask. </ClassMask>
+        <FunctionMask> Function mask. </FunctionMask>
+      </FilterEntry>
+    </IncludeFilters>
+	-->
+    <ExcludeFilters>
+		<!-- Exclude console output from coverage -->
+      <FilterEntry>
+		<ModuleMask>RouletteGame</ModuleMask>
+		<ClassMask>RouletteGame.Output.ConsoleOutput</ClassMask>
+		<FunctionMask>*</FunctionMask>
+	  </FilterEntry>
+	  
+	  <!-- Exclude test project from coverage -->
+      <FilterEntry>
+		<ModuleMask>RouletteGame.Tests.Unit</ModuleMask>
+		<ClassMask>*</ClassMask>
+		<FunctionMask>*</FunctionMask>
+	  </FilterEntry>
+
+    </ExcludeFilters>
+  </Filters>
+
+  <!-- Attribute filters. It's possible to use asterisks as wildcard symbols.
+  <AttributeFilters>
+    <AttributeFilterEntry>...</AttributeFilterEntry>
+    <AttributeFilterEntry>...</AttributeFilterEntry>
+  </AttributeFilters>
+  -->
+</AnalyseParams>

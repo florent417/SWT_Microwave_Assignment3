@@ -1,0 +1,6 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Default" />
+  <Config name="Default" binpathtype="Auto">
+    <assembly path="bin\Debug\RouletteGame.Tests.Unit.dll" />
+  </Config>
+</NUnitProject>
