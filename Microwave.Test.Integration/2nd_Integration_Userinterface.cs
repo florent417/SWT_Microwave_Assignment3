@@ -9,7 +9,7 @@ using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace ClassLibrary1
+namespace Microwave.Test.Integration
 {
 
     [TestFixture]
