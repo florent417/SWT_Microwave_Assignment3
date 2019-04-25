@@ -47,13 +47,12 @@ namespace Microwave.Test.Integration
                 _door, _display, _light, _cookController);
         }
 
-        //[Test]
-        //public void OnPowerButtonPressed_StartOK()
-        //{
-        //    _door.Opened += Raise.EventWith(this, EventArgs.Empty);
-        //    _uut.OnPowerPressed();
-        //    Assert.That();
-        //}
+        [Test]
+        public void OnPowerButtonPressed_StartOK()
+        {
+            _uut.OnPowerPressed(null,null);
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("display shows: 50 w")));
+        }
 
     }
 }
