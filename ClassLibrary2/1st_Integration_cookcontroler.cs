@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Threading;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
+using System.Threading;
 
 
 namespace Microwave.Test.Integration
@@ -31,19 +31,19 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void startcook_powertubeoutput()
+        public void startcookoutput()
         {
             uut.StartCooking(95, 5);
-            output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("PowerTube works with 95 %")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("powertube works with 95 %")));
         }
 
         [Test]
         public void cookwhilecooking()
-        {   
-            uut.StartCooking(95, 5);    
+        {
+            uut.StartCooking(95, 5);
             Assert.That(() => uut.StartCooking(95, 5), Throws.TypeOf<ApplicationException>());
         }
-    
+
         [TestCase(1100)]
         [TestCase(0)]
         public void poweroutofbounds(int power)
