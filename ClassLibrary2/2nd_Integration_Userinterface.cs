@@ -47,11 +47,99 @@ namespace Microwave.Test.Integration
                 _door, _display, _light, _cookController);
         }
 
+        #region OnPwrBtnPressed tests
+
         [Test]
         public void OnPowerButtonPressed_StartOK()
         {
-            _uut.OnPowerPressed(null,null);
+            _uut.OnPowerPressed(null, null);
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("display shows: 50 w")));
+        }
+
+        [Test]
+        public void OnPowerButtonPressed_OutputPwr100()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnPowerPressed(null, null);
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("display shows: 100 w")));
+        }
+
+        [Test]
+        public void OnPowerButtonPressed_Pwr100_CorrectOutput()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnPowerPressed(null, null);
+            _output.DidNotReceive().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("display shows: 150 w")));
+        }
+
+        [Test]
+        public void OnPowerButtonPressed_PwrIncreaseAbove700_Outputs50W()
+        {
+            for (int i = 50; i <= 700; i += 50)
+            {
+                _uut.OnPowerPressed(null, null);
+            }
+            _uut.OnPowerPressed(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("50 w")));
+        }
+
+        [Test]
+        public void OnPowerButtonPressed_PwrIncreaseAbove700_OutputIsCorrect()
+        {
+            for (int i = 50; i <= 700; i += 50)
+            {
+                _uut.OnPowerPressed(null, null);
+            }
+            _uut.OnPowerPressed(null, null);
+
+            _output.DidNotReceive().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("750 w")));
+        }
+
+        #endregion
+
+
+        [Test]
+        public void SetPower_TimeButton_OutputsTime1()
+        {
+            // Also checks if TimeButton is subscribed
+            //_powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            //// Now in SetPower
+            //_timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _uut.OnPowerPressed(null,null);
+            _uut.OnTimePressed(null,null);
+            
+            _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
+        }
+        
+        [Test]
+        public void SetPower_2TimeButton_OutputsTime2()
+        {
+            //_powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            //// Now in SetPower
+            //_timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            //_timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnTimePressed(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("02:00")));
+        }
+
+        [Test]
+        public void SetPower_2TimeButton_OutputIsCorrect()
+        {
+            //_powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            //// Now in SetPower
+            //_timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            //_timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnTimePressed(null, null);
+
+            _output.DidNotReceive().OutputLine(Arg.Is<string>(str => str.Contains("03:00")));
         }
 
     }
