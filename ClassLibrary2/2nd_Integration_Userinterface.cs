@@ -98,7 +98,7 @@ namespace Microwave.Test.Integration
 
         #endregion
 
-
+        #region TimeBtn tests
         [Test]
         public void SetPower_TimeButton_OutputsTime1()
         {
@@ -106,12 +106,12 @@ namespace Microwave.Test.Integration
             //_powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             //// Now in SetPower
             //_timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            _uut.OnPowerPressed(null,null);
-            _uut.OnTimePressed(null,null);
-            
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+
             _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
         }
-        
+
         [Test]
         public void SetPower_2TimeButton_OutputsTime2()
         {
@@ -141,6 +141,11 @@ namespace Microwave.Test.Integration
 
             _output.DidNotReceive().OutputLine(Arg.Is<string>(str => str.Contains("03:00")));
         }
+
+
+        #endregion
+
+
 
     }
 }
