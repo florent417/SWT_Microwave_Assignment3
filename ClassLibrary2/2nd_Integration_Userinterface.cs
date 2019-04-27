@@ -328,7 +328,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void OnDoorOpened_StateCOOKING_OutputsDisplayCLeared()
+        public void OnDoorOpened_StateCOOKING_OutputsDisplayCleared()
         {
             _uut.OnPowerPressed(null, null);
             _uut.OnTimePressed(null, null);
