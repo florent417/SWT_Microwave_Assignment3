@@ -199,7 +199,39 @@ namespace Microwave.Test.Integration
 
         #region State=SETTIME
 
+        [Test]
+        public void OnStartCancelPressed_StateSETTIME_OutputsClearedDisplay()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null,null);
+            _uut.OnStartCancelPressed(null, null);
 
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("cleared")));
+        }
+
+        [Test]
+        public void OnStartCancelPressed_StateSETTime_OutputsLightTurnedOn()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("on")));
+        }
+
+        [Test]
+        public void OnStartCancelPressed_StateSETTime_OutputsPwrTubePower()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("powertube")));
+        }
+
+        /*
+         Missing for showtime
+         */
 
         #endregion
 
