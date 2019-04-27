@@ -125,6 +125,9 @@ namespace MicrowaveOvenClasses.Controllers
                     break;
                 case States.COOKING:
                     myCooker.Stop();
+                    // According to the SD the display should 
+                    // be cleared here
+                    myDisplay.Clear();
                     powerLevel = 50;
                     time = 1;
                     myState = States.DOOROPEN;

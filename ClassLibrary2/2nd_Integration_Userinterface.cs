@@ -252,6 +252,93 @@ namespace Microwave.Test.Integration
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("light is turned off")));
         }
 
+        [Test]
+        public void OnStartCancelPressed_StateCOOKING_OutputsDisplayCleared()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("cleared")));
+        }
+        #endregion
+
+        #endregion
+
+        #region OnDoorOpened
+
+        #region State=READY
+
+        [Test]
+        public void OnDoorOpened_StateREADY_OutputsLightON()
+        {
+            _uut.OnDoorOpened(null,null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("on")));
+        }
+
+        [Test]
+        public void OnDoorOpened_StateSETPOWER_OutputsLightON()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnDoorOpened(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("on")));
+        }
+
+        [Test]
+        public void OnDoorOpened_StateSETPOWER_OutputsDisplayCLeared()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnDoorOpened(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("cleared")));
+        }
+
+        [Test]
+        public void OnDoorOpened_StateSETTIME_OutputsLightON()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null,null);
+            _uut.OnDoorOpened(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("on")));
+        }
+
+        [Test]
+        public void OnDoorOpened_StateSETTIME_OutputsDisplayCLeared()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnDoorOpened(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("cleared")));
+        }
+
+        [Test]
+        public void OnDoorOpened_StateCOOKING_OutputsPwrTubeTurnedOff()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnStartCancelPressed(null,null);
+            _uut.OnDoorOpened(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("powertube")));
+        }
+
+        #endregion
+
+        #region State=SETPOWER
+
+        #endregion
+
+        #region State=SETTIME
+
+        #endregion
+
+        #region State=COOKING
+
         #endregion
 
         #endregion
