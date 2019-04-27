@@ -327,6 +327,17 @@ namespace Microwave.Test.Integration
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("powertube")));
         }
 
+        [Test]
+        public void OnDoorOpened_StateCOOKING_OutputsDisplayCLeared()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+            _uut.OnDoorOpened(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("cleared")));
+        }
+
         #endregion
 
         #region State=SETPOWER
