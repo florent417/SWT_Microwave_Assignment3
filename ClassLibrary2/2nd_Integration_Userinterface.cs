@@ -268,8 +268,6 @@ namespace Microwave.Test.Integration
 
         #region OnDoorOpened
 
-        #region State=READY
-
         [Test]
         public void OnDoorOpened_StateREADY_OutputsLightON()
         {
@@ -338,20 +336,7 @@ namespace Microwave.Test.Integration
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("cleared")));
         }
 
-        #endregion
-
-        #region State=SETPOWER
-
-        #endregion
-
-        #region State=SETTIME
-
-        #endregion
-
-        #region State=COOKING
-
-        #endregion
-
+        
         #endregion
 
 
