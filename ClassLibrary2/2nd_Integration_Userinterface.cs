@@ -159,7 +159,8 @@ namespace Microwave.Test.Integration
 
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("cleared")));
         }
-
+        /*
+         // Maybe it doesnt need to be here at all
         [Test]
         public void OnStartCancelPressed_StateSETPOWER_OutputsLightTurnedOn()
         {
@@ -168,15 +169,7 @@ namespace Microwave.Test.Integration
 
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("on")));
         }
-
-        [Test]
-        public void OnStartCancelPressed_StateSETPOWER_OutputsPwrTubePower()
-        {
-            _uut.OnPowerPressed(null, null);
-            _uut.OnStartCancelPressed(null, null);
-
-            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("powertube")));
-        }
+        */
 
         /*
          // Dont know how to test showTime
