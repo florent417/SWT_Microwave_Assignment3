@@ -228,6 +228,31 @@ namespace Microwave.Test.Integration
 
         #endregion
 
+        #region State=Cooking
+
+        [Test]
+        public void OnStartCancelPressed_StateCOOKING_OutputsPwrTubeOff()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("powertube turned off")));
+        }
+
+        [Test]
+        public void OnStartCancelPressed_StateCOOKING_OutputsLightOff()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("light is turned off")));
+        }
+
+        #endregion
 
         #endregion
 
