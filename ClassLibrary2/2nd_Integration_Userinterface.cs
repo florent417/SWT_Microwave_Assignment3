@@ -147,7 +147,7 @@ namespace Microwave.Test.Integration
 
         #endregion
 
-        #region OnStartCancelPressed
+        #region OnStartCancelPressed tests
 
         #region State=SETPOWER
 
@@ -266,7 +266,7 @@ namespace Microwave.Test.Integration
 
         #endregion
 
-        #region OnDoorOpened
+        #region OnDoorOpened tests
 
         [Test]
         public void OnDoorOpened_StateREADY_OutputsLightON()
@@ -336,7 +336,20 @@ namespace Microwave.Test.Integration
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("cleared")));
         }
 
-        
+
+        #endregion
+
+        #region OnDoorClosed tests
+
+        [Test]
+        public void OnDoorClosed_OutputsLightOff()
+        {
+           _uut.OnDoorOpened(null,null);
+           _uut.OnDoorClosed(null,null);
+
+           _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("off")));
+        }
+
         #endregion
 
 
