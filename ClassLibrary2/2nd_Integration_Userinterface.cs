@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
+using Timer = MicrowaveOvenClasses.Boundary.Timer;
 
 namespace Microwave.Test.Integration
 {
@@ -145,6 +147,64 @@ namespace Microwave.Test.Integration
 
         #endregion
 
+        #region OnStartCancelPressed
+
+        #region State=SETPOWER
+
+        [Test]
+        public void OnStartCancelPressed_StateSETPOWER_OutputsClearedDisplay()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("cleared")));
+        }
+
+        [Test]
+        public void OnStartCancelPressed_StateSETPOWER_OutputsLightTurnedOn()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("on")));
+        }
+
+        [Test]
+        public void OnStartCancelPressed_StateSETPOWER_OutputsPwrTubePower()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("powertube")));
+        }
+
+        /*
+         // Dont know how to test showTime
+        [Test]
+        public void OnStartCancelPressed_StateSETPOWER_OutputsTimeRemaining()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            Thread.Sleep(500);
+
+            
+
+            
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("00:40")));
+        }
+        */
+
+        #endregion
+
+        #region State=SETTIME
+
+
+
+        #endregion
+
+
+        #endregion
 
 
     }

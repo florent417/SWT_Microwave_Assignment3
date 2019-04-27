@@ -76,11 +76,24 @@ namespace MicrowaveOvenClasses.Controllers
             switch (myState)
             {
                 case States.SETPOWER:
-                    powerLevel = 50;
+                    // this needs to be removed, since we can change
+                    // the power in this state in the method 
+                    // on power pressed
+                    //powerLevel = 50;
                     time = 1;
-                    myLight.TurnOff();
+                    // I think this is a mistake, since on the SD
+                    // It says it is supposed to be turned on, and
+                    // it also fails with the integration test
+                    //myLight.TurnOff();
+                    myLight.TurnOn();
                     myDisplay.Clear();
-                    myState = States.READY;
+                    // According to the SD as i am reading it, there 
+                    // is no possibility to get the state Ready from 
+                    // this method. And you should be able to start
+                    // cooking even if the state is SETPOWER
+                    //myState = States.READY;
+                    myCooker.StartCooking((powerLevel / 7), time * 60);
+                    myState = States.COOKING;
                     break;
                 case States.SETTIME:
                     myDisplay.Clear();
