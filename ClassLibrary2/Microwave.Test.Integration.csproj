@@ -60,6 +60,7 @@
     <Compile Include="1st_Integration_cookcontroler.cs" />
     <Compile Include="2nd_Integration_Userinterface.cs" />
     <Compile Include="4th_Itegration_TimerButton.cs" />
+    <Compile Include="3rd_integration_powerbutton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
