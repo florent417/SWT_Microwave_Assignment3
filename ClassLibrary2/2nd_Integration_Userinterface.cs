@@ -9,7 +9,7 @@ using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
-using Timer = MicrowaveOvenClasses.Boundary.Timer;
+using Timer = MicrowaveOvenClasses.Boundary.Timer; 
 
 namespace Microwave.Test.Integration
 {
