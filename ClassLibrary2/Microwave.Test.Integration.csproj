@@ -62,6 +62,7 @@
     <Compile Include="4th_Itegration_TimerButton.cs" />
     <Compile Include="3rd_integration_powerbutton.cs" />
     <Compile Include="5th_Integration_StartCancelButton.cs" />
+    <Compile Include="6th_Integration_Door.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
