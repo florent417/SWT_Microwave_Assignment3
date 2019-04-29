@@ -83,7 +83,7 @@ namespace Microwave.Test.Integration
             }
             _uut.OnPowerPressed(null, null);
 
-            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("50 w")));
+            _output.Received(2).OutputLine(Arg.Is<string>(str => str.ToLower().Contains("display shows: 50 w")));
         }
 
         [Test]
