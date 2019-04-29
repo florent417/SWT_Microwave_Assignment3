@@ -250,7 +250,7 @@ namespace Microwave.Test.Integration
             _uut.OnStartCancelPressed(null, null);
 
             // Wait for 10 secs
-            Thread.Sleep(10000);
+            Thread.Sleep(10200);
 
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("00:50")));
         }
