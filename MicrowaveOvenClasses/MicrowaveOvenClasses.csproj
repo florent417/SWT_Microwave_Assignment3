@@ -59,6 +59,7 @@
     <Compile Include="Interfaces\ITimer.cs" />
     <Compile Include="Interfaces\IUserInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInterfaceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

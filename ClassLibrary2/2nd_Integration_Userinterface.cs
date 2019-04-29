@@ -170,24 +170,6 @@ namespace Microwave.Test.Integration
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("on")));
         }
         */
-
-        /*
-         // Dont know how to test showTime
-        [Test]
-        public void OnStartCancelPressed_StateSETPOWER_OutputsTimeRemaining()
-        {
-            _uut.OnPowerPressed(null, null);
-            _uut.OnStartCancelPressed(null, null);
-
-            Thread.Sleep(500);
-
-            
-
-            
-            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("00:40")));
-        }
-        */
-
         #endregion
 
         #region State=SETTIME
@@ -221,10 +203,6 @@ namespace Microwave.Test.Integration
 
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("powertube")));
         }
-
-        /*
-         Missing for showtime
-         */
 
         #endregion
 
@@ -262,6 +240,59 @@ namespace Microwave.Test.Integration
 
             _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("cleared")));
         }
+
+        // Dont know how to test showTime
+        [Test]
+        public void OnStartCancelPressed_StateCOOKING_OutputsTimeRemaining()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            // Wait for 10 secs
+            Thread.Sleep(10000);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("00:50")));
+        }
+
+        // Dont know how to test showTime
+        [Test]
+        public void OnStartCancelPressed_StateCOOKING_OutputsPwrTubeIsOFF()
+        {
+            _uut.OnPowerPressed(null, null);
+            _uut.OnTimePressed(null, null);
+            _uut.OnStartCancelPressed(null, null);
+
+            Thread.Sleep(60000);
+
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("powertube")));
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("display")));
+            _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("light")));
+        }
+
+        //[Test]
+        //public void OnStartCancelPressed_TimeExpired_StateCOOKING_OutputsDisplayCleared()
+        //{
+        //    _uut.OnPowerPressed(null, null);
+        //    _uut.OnTimePressed(null, null);
+        //    _uut.OnStartCancelPressed(null, null);
+
+        //    Thread.Sleep(60000);
+
+        //    _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("display")));
+        //}
+
+        //[Test]
+        //public void OnStartCancelPressed_StateCOOKING_OutputsLightIsOff()
+        //{
+        //    _uut.OnPowerPressed(null, null);
+        //    _uut.OnTimePressed(null, null);
+        //    _uut.OnStartCancelPressed(null, null);
+
+        //    Thread.Sleep(60000);
+
+        //    _output.Received().OutputLine(Arg.Is<string>(str => str.ToLower().Contains("light")));
+        //}
         #endregion
 
         #endregion
